@@ -1,0 +1,25 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+schema:
+- name: netease
+  path: ../netease
+  commands:
+    vet:
+      status: true
+    fmt:
+      status: true
+    test:
+      status: true
+    install:
+      status: false
+  watcher:
+    extensions:
+    - go
+    paths:
+    - /
+    ignored_paths:
+    - .git
+    - .realize
+    - vendor
