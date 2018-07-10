@@ -1,6 +1,10 @@
-package netease-im
+package neteaseim_test
 
-import "testing"
+import (
+	"testing"
+
+	. "github.com/dfang/neteaseim"
+)
 
 func setupTestCase(t *testing.T) *NeteaseIM {
 	t.Log("setup test case")
@@ -15,9 +19,9 @@ func setupTestCase(t *testing.T) *NeteaseIM {
 func Test_CreateAccid(t *testing.T) {
 	im := setupTestCase(t)
 
-	info := userInfo{
-		accid: "helloworld",
-		name:  "zhangsan",
+	info := UserInfo{
+		Accid: "helloworld",
+		Name:  "zhangsan",
 	}
 
 	t.Log("Creating accid")
@@ -60,11 +64,11 @@ func Test_UnBlockAccid(t *testing.T) {
 func Test_UpdateInfo(t *testing.T) {
 	im := setupTestCase(t)
 
-	info := userInfo{
-		accid:  "helloworld",
-		name:   "王二麻子",
-		sign:   "我是王二麻子",
-		gender: 0,
+	info := UserInfo{
+		Accid:  "helloworld",
+		Name:   "王二麻子",
+		Sign:   "我是王二麻子",
+		Gender: 0,
 	}
 
 	im.UpdateInfo(info)

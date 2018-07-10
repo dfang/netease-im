@@ -1,4 +1,4 @@
-package netease-im
+package neteaseim_test
 
 import "testing"
 

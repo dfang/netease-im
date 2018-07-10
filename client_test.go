@@ -1,6 +1,10 @@
-package netease-im
+package neteaseim_test
 
-import "testing"
+import (
+	"testing"
+
+	. "github.com/dfang/neteaseim"
+)
 
 func Test_Init(t *testing.T) {
 	appKey := "d45545b3eeb821970eab26931859871e"

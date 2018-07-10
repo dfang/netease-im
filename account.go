@@ -1,78 +1,78 @@
-package netease-im
+package neteaseim
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/url"
 	"strconv"
 	"strings"
 )
 
-type userInfo struct {
-	accid  string
-	name   string
-	icon   string
-	sign   string
-	email  string
-	birth  string
-	mobile string
-	gender int
-	ex     string
-	props  string
-	token  string
+// UserInfo 创建或更新云通信ID时需用到
+type UserInfo struct {
+	Accid  string
+	Name   string
+	Icon   string
+	Sign   string
+	Email  string
+	Birth  string
+	Mobile string
+	Gender int
+	Ex     string
+	Props  string
+	Token  string
 }
 
 // http://dev.yunxin.163.com/docs/product/IM即时通讯/服务端API文档/网易云通信ID
 // http://dev.yunxin.163.com/docs/product/IM即时通讯/服务端API文档/用户名片
 
 // CreateAccid 创建网易云通信ID
-func (im *NeteaseIM) CreateAccid(info userInfo) string {
+func (im *NeteaseIM) CreateAccid(info UserInfo) string {
 	CreateAccidURL := NETEASE_BASE_URL + "/user/create.action"
 
 	params := url.Values{}
-	if len(info.accid) <= 0 {
+	if len(info.Accid) <= 0 {
 		panic("accid 参数必须")
 	} else {
-		params.Set("accid", info.accid)
+		params.Set("accid", info.Accid)
 	}
 
-	if len(info.token) > 0 {
-		params.Set("token", info.token)
+	if len(info.Token) > 0 {
+		params.Set("token", info.Token)
 	}
-	if len(info.name) > 0 {
-		params.Set("name", info.name)
-	}
-
-	if len(info.props) > 0 {
-		params.Set("props", info.props)
+	if len(info.Name) > 0 {
+		params.Set("name", info.Name)
 	}
 
-	if len(info.icon) > 0 {
-		params.Set("icon", info.icon)
+	if len(info.Props) > 0 {
+		params.Set("props", info.Props)
 	}
 
-	if len(info.sign) > 0 {
-		params.Set("sign", info.sign)
+	if len(info.Icon) > 0 {
+		params.Set("icon", info.Icon)
 	}
 
-	if len(info.email) > 0 {
-		params.Set("email", info.email)
+	if len(info.Sign) > 0 {
+		params.Set("sign", info.Sign)
 	}
 
-	if len(info.birth) > 0 {
-		params.Set("birth", info.birth)
+	if len(info.Email) > 0 {
+		params.Set("email", info.Email)
 	}
 
-	if len(info.mobile) > 0 {
-		params.Set("mobile", info.mobile)
+	if len(info.Birth) > 0 {
+		params.Set("birth", info.Birth)
 	}
 
-	if info.gender < 2 {
-		params.Set("gender", strconv.Itoa(info.gender))
+	if len(info.Mobile) > 0 {
+		params.Set("mobile", info.Mobile)
 	}
 
-	if len(info.ex) > 0 {
-		params.Set("ex", info.ex)
+	if info.Gender < 2 {
+		params.Set("gender", strconv.Itoa(info.Gender))
+	}
+
+	if len(info.Ex) > 0 {
+		params.Set("ex", info.Ex)
 	}
 	postData := strings.NewReader(params.Encode())
 
@@ -131,19 +131,18 @@ func (im *NeteaseIM) UnBlockAccid(accid string) string {
 }
 
 //UpdateInfo 更新用户名片
-func (im *NeteaseIM) UpdateInfo(info userInfo) string {
+func (im *NeteaseIM) UpdateInfo(info UserInfo) string {
 	UpdateInfoURL := "https://api.netease.im/nimserver/user/updateUinfo.action"
 	params := url.Values{}
-	params.Set("accid", info.accid)
-	params.Set("name", info.name)
-	params.Set("icon", info.icon)
-	params.Set("sign", info.sign)
-	params.Set("email", info.email)
-	params.Set("birth", info.birth)
-	params.Set("mobile", info.mobile)
-	params.Set("birth", info.birth)
-	params.Set("gender", strconv.Itoa(info.gender))
-	params.Set("ex", info.ex)
+	params.Set("accid", info.Accid)
+	params.Set("name", info.Name)
+	params.Set("icon", info.Icon)
+	params.Set("sign", info.Sign)
+	params.Set("email", info.Email)
+	params.Set("birth", info.Birth)
+	params.Set("mobile", info.Mobile)
+	params.Set("gender", strconv.Itoa(info.Gender))
+	params.Set("ex", info.Ex)
 	postData := strings.NewReader(params.Encode())
 
 	result, _ := im.DoNeteaseImRequest(UpdateInfoURL, postData)
